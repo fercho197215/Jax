@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi Pagina Web con IA</title>
+    <style id="themeStyle">
+        body {
+            font-family: Arial, sans-serif;
+            color: #000;
+            background-color: #fff;
+        }
+        .chat-container {
+            width: 50%;
+            height: 300px;
+            border: 1px solid #000;
+            padding: 10px;
+            overflow: auto;
+            margin: auto;
+        }
+        .user-input {
+            width: 50%;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Creado por Pomni/Milor y Fercho197215</h1>
+    <p>Esta IA genera oraciones con estructura básica, por lo que en ocasiones pueden generar oraciones que se entiendan un poco.</p>
+    <h2>Interactúa con la IA</h2>
+
+    <div style="text-align: center;">
+        <button onclick="changeTheme('light')">Tema Claro</button>
+        <button onclick="changeTheme('dark')">Tema Oscuro</button>
+    </div>
+
+    <div class="chat-container" id="chatContainer"></div>
+
+    <div class="user-input">
+        <input type="text" id="userInput" placeholder="Escribe algo...">
+        <button onclick="addUserMessage()">Enviar</button>
+    </div>
+
+    <script>
+        const sujetos = ["El gato", "La silla", "El libro", "La casa", "El coche", "El niño", "La niña", "El árbol", "El perro", "La luna", "El sol", "El pájaro", "El río", "El mar", "La montaña", "La estrella", "La flor", "La hoja", "El viento", "La lluvia"];
+        const verbos = ["come", "corre", "salta", "piensa", "sueña", "baila", "canta", "grita", "llora", "ríe", "vuela", "nada", "brilla", "cae", "crece", "vive", "muere", "sube", "baja", "descansa"];
+        const objetos = ["un pez.", "en el parque.", "muy alto.", "sobre el futuro.", "con volar.", "en la escuela.", "en la luna.", "bajo la lluvia.", "al viento.", "con los pájaros.", "en el mar.", "en el cielo.", "en la montaña.", "en el bosque.", "en el río.", "bajo el sol.", "bajo las estrellas.", "con las flores.", "con las hojas.", "con la lluvias."];
+        const emojis = ["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "😊", "😇", "🙂", "🙃", "😉", "😌", "😍", "🤩", "😘", "😗", "😚", "😙"];
+
+        function generarMensaje() {
+            let sujeto = sujetos[Math.floor(Math.random() * sujetos.length)];
+            let verbo = verbos[Math.floor(Math.random() * verbos.length)];
+            let objeto = objetos[Math.floor(Math.random() * objetos.length)];
+            let emoji = emojis[Math.floor(Math.random() * emojis.length)];
+            return sujeto + " " + verbo + " " + objeto + " " + emoji;
+        }
+
+        function addUserMessage() {
+            const chatContainer = document.getElementById('chatContainer');
+            const userInput = document.getElementById('userInput').value;
+            chatContainer.innerHTML += `<p>Tú: ${userInput}</p>`;
+            
+            const mensajeAleatorio = generarMensaje();
+            chatContainer.innerHTML += `<p>IA: ${mensajeAleatorio}</p>`;
+            
+            document.getElementById('userInput').value = '';
+        }
+
+        function changeTheme(theme) {
+            var themeStyle = document.getElementById('themeStyle');
+            if (theme == 'light') {
+                themeStyle.innerHTML = `body { background-color: #fff; color: #000; } .chat-container { border: 1px solid #000;}`;
+            } else if (theme == 'dark') {
+                themeStyle.innerHTML = `body { background-color: #000; color: #fff; } .chat-container { border: 1px solid #fff;}`;
+            }
+        }
+    </script>
+</body>
+</html>
